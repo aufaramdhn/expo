@@ -1,7 +1,7 @@
 <?php
 $active = 'product';
 $title = 'Dewarangga | Pemesanan';
-include '../layout/navbar-user.php';
+include('../../../layouts/navbar-user.php');
 
 $id_product = $_GET['id_product'];
 $product = mysqli_query($koneksi, "SELECT * FROM product WHERE id_product='$id_product'");
@@ -11,10 +11,12 @@ $today = date("Y-m-d H:i:s");
 
 ?>
 <!-- Form Data -->
-<div class=" min-vh-100 container mb-2 d-flex flex-column justify-content-center">
-  <h3 class="my-3  text-center">Silahkan Isi Form Di Bawah Ini</h3>
-  <div class="card py-5 rounded shadow-lg p-2">
-    <div class="card-body">
+<div class="container mb-2 d-flex flex-column justify-content-center">
+  <div class="card rounded shadow-lg mt-5">
+    <div class="card-header">
+      <h3 class="my-3 text-center">Silahkan Isi Form Di Bawah Ini</h3>
+    </div>
+    <div class="card-body py-4">
       <div class="container p-3">
         <form method="post" enctype="multipart/form-data">
           <table class="w-100" id="example">
@@ -38,7 +40,6 @@ $today = date("Y-m-d H:i:s");
             <tr>
               <td>Harga</td>
               <td>:</td>
-              <!-- <td><input type="text" class="form-control mb-2" id="harga" name="harga" value="Rp. <?= number_format($pr['harga'], 0, ".", ".") ?>" disabled required></td> -->
               <td><input type="text" class="form-control mb-2" id="harga" name="harga" value="Rp. <?= $pr['harga'] ?>" readonly required></td>
             </tr>
             <tr>
@@ -46,13 +47,12 @@ $today = date("Y-m-d H:i:s");
               <td>:</td>
               <td>
                 <select class="form-control mb-2" id="pembayaran" name="pembayaran" required>
-                  <option hidden>Pilih Metode Pembayaran</option>
-                  <option>No.rekening : 982301010 (BCA)</option>
-                  <option>No.rekening : 982301010 (BRI)</option>
-                  <option>No.rekening : 982301010 (BNI)</option>
-                  <option>No.rekening : 982301010 (MANDIRI)</option>
-                  <option>No : 08712837377 (OVO)</option>
-                  <option>No : 08712837377 (DANA)</option>
+                  <option hidden value="">Pilih Metode Pembayaran</option>
+                  <?php
+                  $queryPembayaran = mysqli_query($koneksi, "SELECT * FROM pembayaran");
+                  foreach ($queryPembayaran as $pembayaran) { ?>
+                    <option value="<?= $pembayaran['id_pembayaran'] ?>"><?= $pembayaran['norek'] ?> (<?= $pembayaran['bank'] ?>)</option>
+                  <?php } ?>
                 </select>
               </td>
             </tr>
@@ -69,12 +69,30 @@ $today = date("Y-m-d H:i:s");
             <tr>
               <td>Bukti Pembayaran</td>
               <td>:</td>
-              <td><input class="form-control mb-2" type="file" id="formFileMultiple" multiple name="bukti" required></td>
+              <td>
+                <input class="form-control" type="file" multiple name="bukti" required>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="form-text mb-2 fst-italic">*Format harus png, jpg. Maksimal ukuran 1mb</div>
+              </td>
             </tr>
             <tr>
               <td>Materi Website</td>
               <td>:</td>
-              <td><input class="form-control mb-2" type="file" id="formFileMultiple" multiple name="materi" required></td>
+              <td>
+                <input class="form-control" type="file" multiple name="materi" required>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="form-text mb-2 fst-italic">*Format harus docx, pdf. Maksimal ukuran 10mb</div>
+              </td>
             </tr>
           </table>
           <a><button id="liveAlertBtn" type="submit" class="btn btn-primary w-100 mt-4" name="bayar">Bayar</button></a>
@@ -85,30 +103,61 @@ $today = date("Y-m-d H:i:s");
           $pembayaran =  $_POST['pembayaran'];
           $wkt = $_POST['wkt'];
           $pesan_user =  $_POST['pesan'];
-          $folder1 = '../../bukti/';
+
+          $ekstensi_diperbolehkan_bukti = array('png', 'jpg');
+          $ekstensi_diperbolehkan_materi = array('docx', 'pdf');
+
           $bukti = $_FILES['bukti']['name'];
-          $source = $_FILES['bukti']['tmp_name'];
-          $folder = '../../materi/';
+          $source_bukti = $_FILES['bukti']['tmp_name'];
+          $ukuran_bukti = $_FILES['bukti']['size'];
+          $folder_bukti = '../../../assets/bukti/';
+          $x_bukti = explode('.', $bukti);
+          $ekstensi_bukti = strtolower(end($x_bukti));
+
           $materi = $_FILES['materi']['name'];
           $source_materi = $_FILES['materi']['tmp_name'];
-          $folder_materi = 'materi/';
+          $ukuran_materi = $_FILES['materi']['size'];
+          $folder_materi = '../../../assets/materi/';
+          $x_materi = explode('.', $materi);
+          $ekstensi_materi = strtolower(end($x_materi));
 
+          if (in_array($ekstensi_bukti, $ekstensi_diperbolehkan_bukti) === true and in_array($ekstensi_materi, $ekstensi_diperbolehkan_materi) === true) {
+            //boleh upload file
+            //uji jika ukuran file dibawah 10mb
+            if ($ukuran_bukti < 10440700 and $ukuran_materi < 10440700) {
+              //jika ukuran sesuai
+              //PINDAHKAN FILE YANG DI UPLOAD KE FOLDER FILE aplikasi
+              move_uploaded_file($source_bukti, $folder_bukti . $bukti);
+              move_uploaded_file($source_materi, $folder_materi . $materi);
 
-          $upload = move_uploaded_file($source, '../bukti/' . $bukti);
-          $upload_materi = move_uploaded_file($source_materi, '../materi/' . $materi);
-
-
-          $sql = mysqli_query($koneksi, "INSERT INTO transaksi VALUES (NULL, '$id_user', '$id_product', '$pembayaran', '$wkt', '$pesan_user', '$bukti', '$materi', 'pending')");
-
-          if ($sql == true) {
-            echo "<script>alert('Data anda berhasil disimpan, dan akan di proses oleh admin');</script>";
-            // $_SESSION['info'] = 'disimpan';
-            echo "<script>window.location=' ../order/index.php'</script>";
+              //simpan data ke dalam database
+              $sql = mysqli_query($koneksi, "INSERT INTO transaksi VALUES (NULL, '$id_user', '$id_product', '$pembayaran', '$wkt', '$pesan_user', '$bukti', '$materi', 'pending')");
+              if ($sql) {
+                echo "<script>alert('Data anda berhasil di simpan'); document.location='../order/index.php'</script>";
+              } else {
+                echo "<script>alert('Data anda gagal di simpan); document.location='index.php'</script>";
+              }
+            } else {
+              //ukuran tidak sesuai
+              echo "<script>alert('Ukuran file terlalu besar, max 1mb'); document.location='index.php'</script>";
+            }
           } else {
-            echo "<script>alert('Data anda gagal disimpan, mohon dicek kembali data yang anda masukan');</script>";
-            // $_SESSION['info'] = 'gagal';
-            echo "<script>window.location=' index.php'</script>";
+            //ektensi file yang di upload tidak sesuai
+            echo "<script>alert('Format tidak di perbolehkan'); document.location='index.php'</script>";
           }
+
+
+          // $sql = mysqli_query($koneksi, "INSERT INTO transaksi VALUES (NULL, '$id_user', '$id_product', '$pembayaran', '$wkt', '$pesan_user', '$bukti', '$materi', 'pending')");
+
+          // if ($sql == true) {
+          //   echo "<script>alert('Data anda berhasil disimpan, dan akan di proses oleh admin');</script>";
+          //   // $_SESSION['info'] = 'disimpan';
+          //   echo "<script>window.location=' ../order/index.php'</script>";
+          // } else {
+          //   echo "<script>alert('Data anda gagal disimpan, mohon dicek kembali data yang anda masukan');</script>";
+          //   // $_SESSION['info'] = 'gagal';
+          //   echo "<script>window.location=' index.php'</script>";
+          // }
         }
         ?>
       </div>
@@ -116,4 +165,4 @@ $today = date("Y-m-d H:i:s");
   </div>
 </div>
 <!-- Footer-->
-<?php include('../layout/footer-user.php') ?>
+<?php include('../../../layouts/footer-user.php') ?>

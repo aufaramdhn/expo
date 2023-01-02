@@ -1,3 +1,3 @@
-<?php 
+<?php
 
-$config = 'http://localhost/pkl-project/';
+$config = 'http://localhost/expo/';

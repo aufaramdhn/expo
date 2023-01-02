@@ -1,9 +1,9 @@
 <?php
 
 $active = 'product';
-$title = 'Dewarangga | Product';
+$title = 'Stranger | Product';
 
-include '../layout/navbar-user.php';
+include('../../../layouts/navbar-user.php');
 
 $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
 
@@ -17,18 +17,18 @@ $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
         </div>
         <hr>
         <!-- Pricing section-->
-        <section class="py-5 bg-light">
-            <div class="container px-5 my-5">
+        <section class="py-lg-5 bg-light">
+            <div class="container px-lg-5 my-lg-5">
                 <div class="text-center mb-5">
                     <h2 class="fw-bolder">Biaya Jasa Pembuatan Website Dengan Wordpress</h2>
-                    <span class="p-2 text-success mt-2 border-bottom border-3 border-success"><strong>di Dewarangga</strong></span>
+                    <span class="p-2 text-success mt-2 border-bottom border-3 border-success"><strong>di Stranger</strong></span>
                 </div>
-                <div class="row gx-5 justify-content-center">
+                <div class="row justify-content-center">
                     <!-- Pricing card free-->
                     <?php $no = 1;
                     foreach ($transaksi_product as $transaksi) { ?>
                         <div class="col-lg-6 col-xl-4 mb-4">
-                            <div class="card mb-5 mb-xl-0  shadow">
+                            <div class="card mb-5 mb-xl-0 shadow">
                                 <div class="card-body p-3">
                                     <div class="fs-5 text-uppercase fw-bold text-muted">
                                         <?php if ($transaksi['paket'] == 'BRONZE') { ?>
@@ -46,7 +46,6 @@ $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
                                         <?php } else { ?>
                                             <span style="color:#BF913B ;"><?= $transaksi['paket'] ?></span>
                                         <?php }  ?>
-                                        <!-- <a href="#" class="text-secondary card-link text-decoration-none">Lihat Selengkapnya ></a> -->
                                     </div>
                                     <div class="mb-3">
                                         <span class="display-4 fw-bold" style="font-size: 20px">Rp. <span style="font-size: 30px"><?= $transaksi['harga'] ?></span></span>
@@ -110,4 +109,4 @@ $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
     </div>
 </section>
 <!-- Footer-->
-<?php include('../layout/footer-user.php') ?>
+<?php include('../../../layouts/footer-user.php') ?>

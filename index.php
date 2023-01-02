@@ -14,43 +14,27 @@
     <link rel="stylesheet" href="assets/styles/globalStyle.css">
 </head>
 
-<body>
-    <?php
-    session_start();
-    include 'apps/koneksi.php';
-    if (isset($_GET['pesan'])) {
-        if ($_GET['pesan'] == "gagal") {
-            echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
-        }
-    }
-    ?>
-
-    <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-3 mx-auto mt-5 col-md-8 ">
-        <div class="card card0 border-0 mt-5 ">
-            <div class="row d-flex">
+<body class="d-flex align-items-center min-vh-100">
+    <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 col-md-10">
+        <div class="card border-0">
+            <div class="row justify-content-around align-items-center">
                 <div class="col-md-6">
                     <div class="card1 pb-3">
-                        <div class="row">
-                        </div>
-                        <div class="row px-3 justify-content-center mt-5 border-line">
-                            <img src="assets/login-user.webp" class="image mt-3" width="300px">
+                        <div class="row justify-content-center px-3 mt-5 border-line">
+                            <img src="assets/images/login-user.webp" class="image mt-3">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 ">
+                <div class="col-md-6">
                     <div class="card2 card border-0 px-4 py-5">
                         <div class="row px-3 mb-4">
                             <div class="line"></div>
-                            <div class="text-uppercase fw-bold text-center fs-4 mb-4 text-dark">
-                                <span class="">Welcome To Dewarangga</span>
-                            </div>
                             <div class="text-uppercase fw-bold text-center fs-2 text-dark">
                                 <span class="">Login</span>
                             </div>
                             <div class="line"></div>
                         </div>
-                        <form action="login/cek-login.php" method="POST">
-                            <!-- <form action="" method="POST"> -->
+                        <form action="views/auth/cek-login.php" method="POST">
                             <div class="row px-3 mb-3">
                                 <label class="mb-1">
                                     <h6 class="mb-0 text-sm">Username</h6>
@@ -64,11 +48,10 @@
                                 <input type="password" name="password" placeholder="Enter password">
                             </div>
                             <div class="row mb-2 px-1 mt-2 ">
-                                <a href="login/cek-login.php"><button type="submit" class="btn btn-blue text-center btn-radius-10" value="Login">Login</button></a>
-                                <!-- <input type="submit" name="submit" value="login"> -->
+                                <a href="views/auth/cek-login.php"><button type="submit" class="btn btn-blue text-center btn-radius-10" value="Login">Login</button></a>
                             </div>
                             <div class="row">
-                                <small class="font-weight-bold">Anda Belum Mempunyai Akun? <a class="text-danger text-blue" href="login/register.php">Register</a></small>
+                                <small class="font-weight-bold">Anda Belum Mempunyai Akun? <a class="text-danger text-blue" href="views/auth/register.php">Register</a></small>
                             </div>
                         </form>
                     </div>

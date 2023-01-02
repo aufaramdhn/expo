@@ -1,5 +1,5 @@
 <?php
-require '../../../koneksi.php';
+require('../../../apps/koneksi.php');
 if (isset($_POST['bhapus'])) {
     $id = $_POST['id_transaksi'];
     $sql = mysqli_query($koneksi, "DELETE FROM transaksi WHERE id_transaksi= '$id'");
