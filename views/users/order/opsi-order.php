@@ -9,15 +9,15 @@ if (isset($_POST['simpan'])) {
     $cek = mysqli_num_rows($koneksi->query("SELECT * FROM testimoni WHERE id_user = '$id'"));
 
     if ($cek > 0) {
-        echo "<script>alert('Anda sudah mengisi ulasan');</script>";
+        $_SESSION['info'] = "ulasan_ada";
         echo "<script>window.location='index.php'</script>";
     } else {
         $sql = mysqli_query($koneksi, "INSERT INTO testimoni VALUES ('','$id','$pesan','$today')");
         if ($sql) {
-            echo "<script>alert('Ulasan anda berhasil di simpan');</script>";
+            $_SESSION['info'] = "ulasan_simpan";
             echo "<script>window.location='index.php'</script>";
         } else {
-            echo "<script>alert('Ulasan anda gagal di simpan');</script>";
+            $_SESSION['info'] = "ulasan_gagal";
             echo "<script>window.location='index.php'</script>";
         }
     }

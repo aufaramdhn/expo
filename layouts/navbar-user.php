@@ -1,10 +1,10 @@
 <?php
 session_start();
-include "../../../apps/config.php";
-include "../../../apps/koneksi.php";
+require("../../../apps/config.php");
+require("../../../apps/koneksi.php");
 $id = $_SESSION['id'];
-$img    = $koneksi->query("SELECT * FROM user WHERE id='$id'");
-$data    = mysqli_fetch_array($img);
+$img = $koneksi->query("SELECT * FROM user WHERE id='$id'");
+$data = mysqli_fetch_array($img);
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +16,6 @@ $data    = mysqli_fetch_array($img);
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title><?= $title ?></title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="<?php echo $config ?>assets/favicon.ico" />
     <!-- Bootstrap icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
@@ -35,7 +33,7 @@ $data    = mysqli_fetch_array($img);
         }
 
         body {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         footer {
@@ -43,11 +41,25 @@ $data    = mysqli_fetch_array($img);
             bottom: 0;
             width: 100%;
         }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin-bottom: 30px;
+            }
+        }
     </style>
 
 </head>
 
 <body class="d-flex flex-column">
+
+    <!-- Alert -->
+    <?php if (isset($_SESSION['info'])) : ?>
+        <div class="info-data" data-infodata="<?php echo $_SESSION['info']; ?>"></div>
+    <?php
+        unset($_SESSION['info']);
+    endif;
+    ?>
 
     <main class="flex-shrink-0">
         <!-- Navigation-->
@@ -83,8 +95,8 @@ $data    = mysqli_fetch_array($img);
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#logout" class="mx-3">
-                                        <button type="button" class="btn btn-primary">Logout <i class="bi bi-box-arrow-right"></i></button>
+                                    <a href="<?php echo $config ?>index.php" class="btn btn-logout btn-primary ms-3">
+                                        Logout <i class="bi bi-box-arrow-right"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -97,41 +109,15 @@ $data    = mysqli_fetch_array($img);
                         </li>
                         <li class="nav-item d-lg-none">
                             <span class="nav-link text-white-75">
-                                <a data-bs-toggle="modal" data-bs-target="#logout">
-                                    <button type="button" class="btn btn-primary">Logout <i class="bi bi-box-arrow-right"></i>
-                                    </button>
+                                <a class="btn btn-logout btn-primary" href="<?php echo $config ?>index.php">
+                                    Logout
                                 </a>
                             </span>
                         </li>
-
-                        <!-- <a data-bs-toggle="modal" data-bs-target="#logout" class="mx-3"><button type="button" class="btn btn-primary">Logout <i class="bi bi-box-arrow-right"></i></button></a> -->
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <!-- Modal Logout -->
-
-        <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content text-center">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-flex flex-column" style="font-size: 76px;">
-                        <i class="bi bi-exclamation-circle text-warning"></i>
-                        <strong class="fs-6">
-                            Apakah anda yakin ingin keluar dari website ini?
-                        </strong>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                        <a href="../../../views/auth/logout.php"><button type="submit" class="btn btn-danger">Ya</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Alert -->
         <?php if (isset($_SESSION['info'])) : ?>

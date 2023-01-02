@@ -1,5 +1,6 @@
 <?php
 require('../../../apps/koneksi.php');
+session_start();
 date_default_timezone_set('Asia/jakarta');
 $today = date("Y-m-d H:i:s");
 
@@ -7,12 +8,11 @@ if (isset($_POST['bhapus'])) {
 
     $delete = mysqli_query($koneksi, "DELETE FROM user WHERE id = '$_POST[id]' ");
 
-
     if ($delete) {
-        echo "<script>alert('your data has been deleted successfully');</script>";
+        $_SESSION['info'] = "berhasil_hapus";
         echo "<script>window.location='index.php'</script>";
     } else {
-        echo "<script>alert('Gagal');</script>";
+        $_SESSION['info'] = "gagal_hapus";
         echo "<script>window.location='index.php'</script>";
     }
 }
@@ -23,27 +23,23 @@ if (isset($_POST['bedit'])) {
 
 
     if ($update) {
-        echo "<script>alert('your data has been successfully changed');</script>";
+        $_SESSION['info'] = "berhasil_ubah";
         echo "<script>window.location='index.php'</script>";
     } else {
-        echo "<script>alert('Gagal');</script>";
+        $_SESSION['info'] = "gagal_ubah";
         echo "<script>window.location='index.php'</script>";
     }
 }
-
-
 
 if (isset($_POST['btambah'])) {
 
     $create = mysqli_query($koneksi, "INSERT INTO user VALUES (NULL, '$_POST[nama]', '$_POST[email]', '$_POST[no_tlp]', '$_POST[username]', '$_POST[password]', 'NULL', '$_POST[level]', '$today')");
 
-    $_SESSION['eksekusi'] = "Data Berhasil Ditambahkan";
-
     if ($create) {
-        echo "<script>alert('Your data has been successfully added');</script>";
+        $_SESSION['info'] = "berhasil_simpan";
         echo "<script>window.location='index.php'</script>";
     } else {
-        echo "<script>alert('Gagal');</script>";
+        $_SESSION['info'] = "gagal_simpan";
         echo "<script>window.location='index.php'</script>";
     }
 }

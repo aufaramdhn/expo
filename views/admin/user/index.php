@@ -24,27 +24,27 @@ $users = mysqli_query($koneksi, "SELECT * FROM user");
         <div class="container col-md-12 mb-4">
           <div class="p-1">
             <div class="mb-3">
-              <label for="nama" style="font-size:15px;" class="mb-1">Name</label>
+              <label for="nama" class="mb-1">Name</label>
               <input type="text" class="form-control" id="nama" name="nama" placeholder="First name">
             </div>
             <div class="mb-3">
-              <label for="email" style="font-size:15px;" class="mb-1">Email</label>
+              <label for="email" class="mb-1">Email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Email">
             </div>
             <div class="mb-3">
-              <label for="no_tlp" style="font-size:15px;" class="mb-1">No.Telepon</label>
+              <label for="no_tlp" class="mb-1">No.Telepon</label>
               <input type="text" class="form-control" id="no_tlp" name="no_tlp" placeholder="No.Telepon">
             </div>
             <div class="mb-3">
-              <label for="username" style="font-size:15px;" class="mb-1">Username</label>
+              <label for="username" class="mb-1">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Username">
             </div>
             <div class="mb-3">
-              <label for="username" style="font-size:15px;" class="mb-1">Password</label>
+              <label for="username" class="mb-1">Password</label>
               <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
             <div class="mb-3">
-              <label for="level" style="font-size:15px;" class="mb-1">Level</label>
+              <label for="level" class="mb-1">Level</label>
               <select class="form-select" id="level" name="level">
                 <option hidden>Level</option>
                 <option>user</option>
@@ -54,8 +54,8 @@ $users = mysqli_query($koneksi, "SELECT * FROM user");
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" name="btambah">Confirm</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary" name="btambah">Simpan</button>
         </div>
       </form>
     </div>
@@ -104,12 +104,12 @@ $users = mysqli_query($koneksi, "SELECT * FROM user");
                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
                 <div class="modal-body">
                   <strong class="fs-6">
-                    Are you sure want to delete this data?
+                    Apakah anda yakin ingin mengahapus data ini?
                   </strong>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                  <button type="submit" class="btn btn-danger" name="bhapus">Yes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                  <button type="submit" class="btn btn-danger" name="bhapus">Hapus</button>
                 </div>
               </form>
             </div>
@@ -120,7 +120,7 @@ $users = mysqli_query($koneksi, "SELECT * FROM user");
           <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Your Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Mengubah data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form action="opsi-user.php" method="POST">
@@ -128,27 +128,27 @@ $users = mysqli_query($koneksi, "SELECT * FROM user");
                   <div class="p-1">
                     <div class="my-3">
                       <input type="hidden" name="id" value="<?= $user['id']; ?>">
-                      <label for="nama" style="font-size:15px;" class="mb-1">Name</label>
+                      <label for="nama" class="mb-1">Name</label>
                       <input type="input" class="form-control" id="nama" name="nama" value="<?php echo $user['nama']; ?>" placeholder="Nama Lengkap">
                     </div>
                     <div class="my-3">
-                      <label for="email" style="font-size:15px;" class="mb-1">Email</label>
+                      <label for="email" class="mb-1">Email</label>
                       <input type="input" class="form-control" id="email" name="email" value="<?php echo $user['email']; ?>" placeholder="Email Address">
                     </div>
                     <div class="my-3">
-                      <label for="no_tlp" style="font-size:15px;" class="mb-1">No.Telepon</label>
+                      <label for="no_tlp" class="mb-1">No.Telepon</label>
                       <input type="input" class="form-control" id="no_tlp" name="no_tlp" value="<?php echo $user['no_tlp']; ?>" placeholder="Nomer Telepon">
                     </div>
                     <div class="mb-3">
-                      <label for="username" style="font-size:15px;" class="mb-1">Username</label>
+                      <label for="username" class="mb-1">Username</label>
                       <input type="input" class="form-control" id="username" name="username" value="<?php echo $user['username']; ?>" placeholder="Username">
                     </div>
                     <div class="mb-3">
-                      <label for="username" style="font-size:15px;" class="mb-1">Password</label>
+                      <label for="username" class="mb-1">Password</label>
                       <input type="input" class="form-control" id="password" name="password" value="<?php echo $user['password']; ?>" placeholder="Password">
                     </div>
                     <div class="mb-3">
-                      <label for="level" style="font-size:15px;" value="<?php echo $user['level']; ?>" class="mb-1">Level</label>
+                      <label for="level" value="<?php echo $user['level']; ?>" class="mb-1">Level</label>
                       <select class="form-select" id="level" name="level">
                         <option hidden>Level</option>
                         <option>user</option>
@@ -158,8 +158,8 @@ $users = mysqli_query($koneksi, "SELECT * FROM user");
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success text-white" name="bedit">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-success text-white" name="bedit">Simpan</button>
                 </div>
               </form>
             </div>

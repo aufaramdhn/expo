@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,21 +11,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Dewarangga</title>
 
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-
     <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="../../assets/styles/globalStyle.css">
 </head>
 
 <body class="d-flex align-items-center min-vh-100">
+
+    <?php if (isset($_SESSION['info'])) : ?>
+        <div class="info-data" data-infodata="<?php echo $_SESSION['info']; ?>"></div>
+    <?php
+        session_destroy();
+    // unset($_SESSION['info']);
+    endif;
+    ?>
+
     <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-3 mx-auto col-md-10">
         <div class="card border-0">
             <div class="row justify-content-around align-items-center">
                 <div class="col-md-6">
                     <div class="card1 pb-3">
                         <div class="row px-3 justify-content-center mt-3 ">
-                            <img src="../../assets/images/login.png" style="width: 70%;">
+                            <img src="../../assets/images/register.png" style="width: 70%;">
                         </div>
                     </div>
                 </div>
@@ -29,7 +40,7 @@
                     <div class="card2 card border-0 px-4 py-5">
                         <div class="row px-3 mb-2">
                             <div class="line"></div>
-                            <div class="text-uppercase fw-bold text-center fs-3 mb-3 text-dark">
+                            <div class="fw-bold text-center fs-3 mb-3 text-dark">
                                 <span>Register</span>
                             </div>
                             <div class="line"></div>
@@ -58,11 +69,8 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
                             </div>
-                            <div class="row px-3">
-                                <input class="mb-2" type="hidden" name="level" value="user">
-                            </div>
                             <div class="row mb-2 mt-2 px-1 ">
-                                <a href="cek-login.php"><input type="submit" class="btn btn-blue text-center btn-radius-10" value="Register"></a>
+                                <button type="submit" name="register" class="btn btn-blue text-center btn-radius-10 ms-2">Register</button>
                             </div>
                             <div class="row mb-1 ">
                                 <small class="font-weight-bold">Anda Sudah Mempunyai Akun? <a class="text-danger text-blue mt-2" href="../../index.php">Login</a></small>
@@ -79,8 +87,11 @@
         </div>
     </div>
 
-
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/script/jquery.js"></script>
+    <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/script/sweetalert.js"></script>
+    <script src="../../assets/script/alert.js"></script>
 </body>
 
 </html>

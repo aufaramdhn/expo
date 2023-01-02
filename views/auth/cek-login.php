@@ -14,6 +14,7 @@ if ($cek > 0) {
 		$_SESSION['nama'] =  $data['nama'];
 		$_SESSION['notelp'] =  $data['no_tlp'];
 		$_SESSION['level'] = "admin";
+		$_SESSION['info'] = "berhasil_login";
 		//berfungsi mengalihkan ke halaman admin
 		header("location: ../../views/admin/dashboard/index.php");
 		// berfungsi mengecek jika user login sebagai moderator
@@ -23,10 +24,11 @@ if ($cek > 0) {
 		$_SESSION['nama'] = $data['nama'];
 		$_SESSION['notelp'] =  $data['no_tlp'];
 		$_SESSION['level'] = "user";
+		$_SESSION['info'] = "berhasil_login";
 		// berfungsi mengalihkan ke halaman moderator
 		header("location:../../views/users/home/index.php");
 	}
 } else {
-	echo "<script>alert('Maaf Username Atau Password Anda Salah');</script>";
+	$_SESSION['info'] = "kosong";
 	echo "<script>window.location='../../index.php'</script>";
 }

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require('../../../apps/koneksi.php');
 require('../../../apps/config.php')
 
@@ -16,8 +15,6 @@ require('../../../apps/config.php')
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.101.0">
   <title><?= $title ?></title>
-
-  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
@@ -35,28 +32,14 @@ require('../../../apps/config.php')
 </head>
 
 <body id="body-pd">
-  <!-- Modal Logout -->
 
-  <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content text-center">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex flex-column" style="font-size: 76px;">
-          <i class="bi bi-exclamation-circle text-warning"></i>
-          <strong class="fs-6">
-            Are you sure you want to leave this website?
-          </strong>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-          <a href="<?php echo $config ?>views/auth/logout.php"><button type="submit" class="btn btn-danger">Yes</button></a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Alert -->
+  <?php if (isset($_SESSION['info'])) : ?>
+    <div class="info-data" data-infodata="<?php echo $_SESSION['info']; ?>"></div>
+  <?php
+    unset($_SESSION['info']);
+  endif;
+  ?>
 
   <header class="header" id="header">
     <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
@@ -84,7 +67,7 @@ require('../../../apps/config.php')
           </a>
         </div>
       </div>
-      <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+      <a style="cursor: pointer;" class="nav_link btn-logout" href="<?php echo $config ?>index.php"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
     </nav>
   </div>
   <!--Container Main start-->

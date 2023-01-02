@@ -75,7 +75,7 @@
             </div>
         </section>
         <!-- Testimonial -->
-        <section class=" my-5 p-3 bg-light">
+        <section class="my-5 px-3 pt-3 pb-5 bg-light">
             <div class="container">
                 <div class="text-center mt-4">
                     <h2 class="fw-bolder">Testimoni</h2>
