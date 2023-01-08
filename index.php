@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Dewarangga</title>
+    <title>Login | Stranger</title>
 
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,13 +48,13 @@ session_start();
                                 <label class="mb-1">
                                     <h6 class="mb-0 text-sm">Username</h6>
                                 </label>
-                                <input type="text" class="form-control" name="username" placeholder="Enter a valid email address">
+                                <input type="text" class="form-control" name="username" placeholder="Masukan Username">
                             </div>
                             <div class="row px-3 mb-3">
                                 <label class="mb-1">
                                     <h6 class="mb-0 text-sm">Password</h6>
                                 </label>
-                                <input type="password" class="form-control" name="password" placeholder="Enter password">
+                                <input type="password" class="form-control" name="password" placeholder="Masukan Password">
                             </div>
                             <div class="row mb-2 px-1 mt-2 ">
                                 <a href="views/auth/cek-login.php"><button type="submit" class="btn btn-blue text-center btn-radius-10" value="Login">Login</button></a>

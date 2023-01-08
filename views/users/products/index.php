@@ -9,8 +9,8 @@ $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
 
 ?>
 <!-- Pricing section-->
-<section class="bg-light py-5">
-    <div class="container px-5 my-5">
+<section class="bg-light">
+    <div class="container px-md-5 px-2 my-5">
         <div class="text-center">
             <h1 class="fw-bolder">Bayar Saat Anda Puas dengan Hasil Kerja Kami</h1>
             <p class="lead fw-normal text-muted mb-0">Dengan paket harga yang sesuai keinginan anda</p>
@@ -18,7 +18,7 @@ $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
         <hr>
         <!-- Pricing section-->
         <section class="py-lg-5 bg-light">
-            <div class="container px-lg-5 my-lg-5">
+            <div class="container-md container-fluid px-lg-5 my-lg-5">
                 <div class="text-center mb-5">
                     <h2 class="fw-bolder">Biaya Jasa Pembuatan Website Dengan Wordpress</h2>
                     <span class="p-2 text-success mt-2 border-bottom border-3 border-success"><strong>di Stranger</strong></span>
@@ -27,8 +27,8 @@ $transaksi_product = mysqli_query($koneksi, "SELECT * FROM product");
                     <!-- Pricing card free-->
                     <?php $no = 1;
                     foreach ($transaksi_product as $transaksi) { ?>
-                        <div class="col-lg-6 col-xl-4 mb-4">
-                            <div class="card mb-5 mb-xl-0 shadow">
+                        <div class="col-lg-6 col-xl-4 mb-md-4 mb-0">
+                            <div class="card mb-md-5 mb-3 mb-xl-0 shadow">
                                 <div class="card-body p-3">
                                     <div class="fs-5 text-uppercase fw-bold text-muted">
                                         <?php if ($transaksi['paket'] == 'BRONZE') { ?>

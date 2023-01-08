@@ -38,7 +38,7 @@ $today = date("Y-m-d H:i:s");
           <div class="mb-2">
             <label for="pembayaran">Pembayaran</label>
             <select class="form-control mb-2" id="pembayaran" name="pembayaran" required>
-              <option hidden value="">Pilih Metode Pembayaran</option>
+              <option hidden value="">-- Pilih Metode Pembayaran --</option>
               <?php
               $queryPembayaran = mysqli_query($koneksi, "SELECT * FROM pembayaran");
               foreach ($queryPembayaran as $pembayaran) { ?>
@@ -97,7 +97,7 @@ $today = date("Y-m-d H:i:s");
               move_uploaded_file($source_materi, $folder_materi . $materi);
 
               //simpan data ke dalam database
-              $sql = mysqli_query($koneksi, "INSERT INTO transaksi VALUES (NULL, '$id_user', '$id_product', '$pembayaran', '$wkt', '$pesan_user', '$bukti', '$materi', 'pending')");
+              $sql = mysqli_query($koneksi, "INSERT INTO transaksi VALUES (NULL, '$id_user', '$id_product', '$pembayaran', '$today', '$pesan_user', '$bukti', '$materi', 'pending')");
               if ($sql) {
                 $_SESSION['info'] = "berhasil_simpan";
                 echo "<script>document.location='../order/index.php'</script>";

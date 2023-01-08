@@ -65,7 +65,7 @@ $data = mysqli_fetch_array($img);
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
             <div class="container px-5">
-                <h5 class="navlink text-white fw-bold text-center">STRANGER</h5>
+                <h5 class="navlink fw-bold text-center" style="color: #FFCA03;">STRANGER</h5>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto ">

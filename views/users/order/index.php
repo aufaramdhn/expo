@@ -23,74 +23,75 @@ $cek = mysqli_num_rows($orders);
     }
 </style>
 
-<div class="container mt-5 mb-5 d-flex flex-column">
-    <div class="row gx-5 align-content-center">
-        <!-- Pricing card free-->
+<div class="container mt-4 mb-5">
+    <div class="row gx-md-5 gx-1">
         <?php if ($cek > 0) { ?>
             <?php $no = 1;
             foreach ($orders as $order) { ?>
                 <div class="col-md-3 mt-2 mb-2">
-                    <div class="card p-0 " style="width: 20rem; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); ">
-                        <span class="text-center border-3 border-dark border-bottom py-3 fw-bold fs-5">STRANGER</span>
-                        <div class="bg-white">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="fs-5 text-uppercase fw-bold text-muted mt-2 ms-4">
-                                    <?php if ($order['paket'] == 'BRONZE') { ?>
-                                        <span style="color:#CD7F32;"><?= $order['paket'] ?></span>
-                                    <?php } else if ($order['paket'] == 'SILVER') { ?>
-                                        <span style="color:#C0C0C0;"><?= $order['paket'] ?></span>
-                                    <?php } else if ($order['paket'] == 'GOLD') { ?>
-                                        <span style="color:#FFD700;"><?= $order['paket'] ?></span>
-                                    <?php } else if ($order['paket'] == 'PLATINUM') { ?>
-                                        <span style="color:#E5E4E2;"><?= $order['paket'] ?></span>
-                                    <?php } else if ($order['paket'] == 'DIAMOND') { ?>
-                                        <span style="color:#B9F2FF;"><?= $order['paket'] ?></span>
-                                    <?php } else if ($order['paket'] == 'CROWN') { ?>
-                                        <span style="color:#BF913B ;"><?= $order['paket'] ?></span>
-                                    <?php } ?>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="card p-0 " style="width: 20rem; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); ">
+                            <span class="text-center border-3 border-dark border-bottom py-3 fw-bold fs-5 bg-dark rounded-top" style="color: #FFCA03;">STRANGER</span>
+                            <div class="bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="fs-5 text-uppercase fw-bold text-muted mt-2 ms-4">
+                                        <?php if ($order['paket'] == 'BRONZE') { ?>
+                                            <span style="color:#CD7F32;"><?= $order['paket'] ?></span>
+                                        <?php } else if ($order['paket'] == 'SILVER') { ?>
+                                            <span style="color:#C0C0C0;"><?= $order['paket'] ?></span>
+                                        <?php } else if ($order['paket'] == 'GOLD') { ?>
+                                            <span style="color:#FFD700;"><?= $order['paket'] ?></span>
+                                        <?php } else if ($order['paket'] == 'PLATINUM') { ?>
+                                            <span style="color:#E5E4E2;"><?= $order['paket'] ?></span>
+                                        <?php } else if ($order['paket'] == 'DIAMOND') { ?>
+                                            <span style="color:#B9F2FF;"><?= $order['paket'] ?></span>
+                                        <?php } else if ($order['paket'] == 'CROWN') { ?>
+                                            <span style="color:#BF913B ;"><?= $order['paket'] ?></span>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text mt-2 ms-2"><?= $order['pesan'] ?></p>
-                        </div>
-                        <div class="fs-6 fw-bold text-black mt-2 ms-4"><?= $order['wkt'] ?></div>
-                        <?php if ($order['status'] == 'accept') { ?>
-                            <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Estimasi Selesai 2 Hari Setelah Pemesanan</i></p>
-                        <?php } else if ($order['status'] == 'reject') { ?>
-                            <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Maaf Pesanan Anda Ditolak</i></p>
-                        <?php } else if ($order['status'] == 'done') { ?>
-                            <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Pesanan Anda Sudah Selesai</i></p>
-                        <?php } else if ($order['status'] == 'pending') { ?>
-                            <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Sedang Menunggu Pesanan Di Konfirmasi</i></p>
-                        <?php } ?>
-                        <div class="card-footer p-0" style="margin-bottom: -2px;">
-                            <div class="fw-bold text-uppercase">
-                                <?php if ($order['status'] == 'accept') { ?>
-                                    <div class="card-button bg-success">
-                                        <div class="d-flex justify-content-between align-items-center ">
-                                            <span class="text-white">Accept</span>
+                            <div class="card-body">
+                                <p class="card-text mt-2 ms-2"><?= $order['pesan'] ?></p>
+                            </div>
+                            <div class="fs-6 fw-bold text-black mt-2 ms-4"><?= $order['wkt'] ?></div>
+                            <?php if ($order['status'] == 'accept') { ?>
+                                <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Estimasi Selesai 2 Hari Setelah Pemesanan</i></p>
+                            <?php } else if ($order['status'] == 'reject') { ?>
+                                <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Maaf Pesanan Anda Ditolak</i></p>
+                            <?php } else if ($order['status'] == 'done') { ?>
+                                <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Pesanan Anda Sudah Selesai</i></p>
+                            <?php } else if ($order['status'] == 'pending') { ?>
+                                <p class="card-text mt-3  text-center" style="font-size: 14px; margin-bottom:1px; "><i>Sedang Menunggu Pesanan Di Konfirmasi</i></p>
+                            <?php } ?>
+                            <div class="card-footer p-0" style="margin-bottom: -2px;">
+                                <div class="fw-bold text-uppercase">
+                                    <?php if ($order['status'] == 'accept') { ?>
+                                        <div class="card-button bg-success">
+                                            <div class="d-flex justify-content-between align-items-center ">
+                                                <span class="text-white">Accept</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php } else if ($order['status'] == 'reject') { ?>
-                                    <div class="card-button bg-danger">
-                                        <div class="d-flex justify-content-between align-items-center ">
-                                            <span class="text-white">Reject</span>
+                                    <?php } else if ($order['status'] == 'reject') { ?>
+                                        <div class="card-button bg-danger">
+                                            <div class="d-flex justify-content-between align-items-center ">
+                                                <span class="text-white">Reject</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php } else if ($order['status'] == 'done') { ?>
-                                    <div class="card-button bg-success">
-                                        <div class="d-flex justify-content-between align-items-center flex-column">
-                                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">Beri Ulasan<i class='bx bx-star ms-1 text-warning'></i></a>
+                                    <?php } else if ($order['status'] == 'done') { ?>
+                                        <div class="card-button bg-success">
+                                            <div class="d-flex justify-content-between align-items-center flex-column">
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">Beri Ulasan<i class='bx bx-star ms-1 text-warning'></i></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php } else if ($order['status'] == 'pending') { ?>
-                                    <div class="card-button bg-warning">
-                                        <div class="d-flex justify-content-between align-items-center ">
-                                            <span class="text-white  ">Pending</span>
+                                    <?php } else if ($order['status'] == 'pending') { ?>
+                                        <div class="card-button bg-warning">
+                                            <div class="d-flex justify-content-between align-items-center ">
+                                                <span class="text-white  ">Pending</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php } ?>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,7 +117,7 @@ $cek = mysqli_num_rows($orders);
                         <div class="mb-3">
                             <label for="pesan" class="form-label">Pesan</label>
                             <input type="hidden" name="id_user" value="<?= $id ?>">
-                            <textarea class="form-control" id="pesan" name="pesan" rows="3"></textarea>
+                            <textarea class="form-control" id="pesan" name="pesan" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

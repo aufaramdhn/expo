@@ -28,7 +28,7 @@ if (mysqli_num_rows($sql) > 0) {
                 <div class="card-body row">
                     <div class="d-flex justify-content-xs-center flex-column align-items-center col-md-4 mb-5">
                         <?php
-                        if (empty($img)) {
+                        if ($img == "NULL") {
                         ?>
                             <div class="mb-3">
                                 <img src="<?php echo $config ?>assets/images/person-circle.svg" width="200" alt="">
@@ -81,7 +81,7 @@ if (mysqli_num_rows($sql) > 0) {
             <form method="POST" enctype="multipart/form-data">
                 <div class="card-body row">
                     <div class="d-flex justify-content-xs-center flex-column align-items-center col-md-4 mb-5">
-                        <?php if ($img == '') { ?>
+                        <?php if ($img == 'NULL') { ?>
                             <div class="mb-3">
                                 <img src="<?php echo $config ?>assets/images/person-circle.svg" width="200" alt="">
                             </div>

@@ -1,5 +1,6 @@
 <?php
 require('../../../apps/koneksi.php');
+session_start();
 date_default_timezone_set('Asia/jakarta');
 $today = date("Y-m-d H:i:s");
 if (isset($_POST['simpan'])) {
